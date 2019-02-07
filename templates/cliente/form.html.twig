@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>
+    <?php
+      if($nome == ''){
+        echo "Seja Bem-Vindo(a).";
+      } else {
+        if( isset( $_POST['M'] ) ){
+          echo "Seja Bem-Vindo, $nome.";
+        } else {
+          echo "Seja Bem-Vinda, $nome.";
+        }
+      }
+    ?>
+  </title>
+</head>
+
+<body>
+<?php
+  //Verificação de erros
+  if(count($erros) > 0) {
+    foreach( $erros as $erro ){
+      echo "<h3>$erro</h3>";
+    }
+  }
+  //Verificação de sucessos
+  if(count($sucessos) > 0) {
+    foreach( $sucessos as $sucesso ){
+      echo "<h3>$sucesso</h3>";
+    }
+  }
+?>
+
+{% for erro in erros %}
+{{ erros }}
+{% end for %}
+
+<form method="post">
+  Nome:
+  <input type="text" name="nome" value="{{ cliente.nome }}">
+  </br>
+  Sexo:
+  <input type="radio" name="M" value="{{ cliente.sexo }}">  Masculino
+  <input type="radio" name="S" value="{{ cliente.sexo }}">  Feminino
+  </br>
+  Email:
+  <input type="text" name="email" value="{{ cliente.email }}">
+  </br>
+  Telefone:
+  <input type="tel" name="telefone" value="{{ cliente.telefone }}">
+  </br>
+  Senha:
+  <input type="password" name="senha" value="{{ cliente.senha }}">
+  </br>
+  Confirme sua senha:
+  <input type="password" name="senhaConfirmacao" value="{{ senhaConfirmação }}">
+
+  </br>
+  <input type="submit" value="Salvar">
+</form>
+
+</body>
+
+</html>
